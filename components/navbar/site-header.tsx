@@ -2,14 +2,14 @@ import Link from 'next/link';
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-4 z-50 mb-10 rounded-[28px] border border-red-900/30 bg-black/65 backdrop-blur-xl shadow-2xl">
+    <header className="mb-10 rounded-[28px] border border-red-900/30 bg-black/90 backdrop-blur-xl shadow-2xl">
       <div className="h-1 w-full rounded-t-[28px] bg-gradient-to-r from-red-700 via-red-600 to-red-800" />
 
       <div className="flex flex-col gap-8 p-7 lg:flex-row lg:items-center lg:justify-between">
         <div className="space-y-4">
           <div className="inline-flex items-center gap-3 rounded-full border border-red-700/30 bg-red-900/20 px-4 py-2 text-sm font-medium uppercase tracking-wider text-red-300">
             <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-red-500" />
-            Comunidad War Thunder España
+            Comunidad War Thunder En Español
           </div>
 
           <div>

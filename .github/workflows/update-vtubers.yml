@@ -1,4 +1,4 @@
-name: Actualizar streamers
+name: Actualizar Streamers
 
 on:
   schedule:
@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Ejecutar actualización
+      - name: Llamar API de actualización
         run: |
-          curl -X GET \
-            -H "Authorization: Bearer ${{ secrets.CRON_SECRET_GITHUB }}" \
-            https://vtcol-hub.vercel.app/api/cron/update
+          curl --fail \
+            -H "Authorization: Bearer ${{ secrets.WT_CRON_SECRET_GITHUB }}" \
+            https://wt-beryl.vercel.app
