@@ -6,22 +6,82 @@ const config: Config = {
     './components/**/*.{js,ts,jsx,tsx}',
     './lib/**/*.{js,ts,jsx,tsx}',
   ],
+
   theme: {
     extend: {
+
       colors: {
-        bg: '#0b1120',
-        surface: '#111827',
-        surfaceSoft: '#17203a',
-        accent: '#7c3aed',
-        accentSoft: '#a78bfa',
-        border: 'rgba(148, 163, 184, 0.24)',
+
+        /* Fondo principal */
+
+        bg: '#0b0b0b',
+
+        /* Tarjetas */
+
+        surface: '#151515',
+
+        surfaceSoft: '#1d1d1d',
+
+        /* Colores WT */
+
+        accent: '#c62828',
+
+        accentHover: '#e53935',
+
+        steel: '#6b7280',
+
+        carbon: '#111111',
+
+        olive: '#4b5320',
+
+        border: 'rgba(255,255,255,.08)',
+
       },
+
       boxShadow: {
-        soft: '0 20px 45px rgba(15, 23, 42, 0.25)',
-        glow: '0 0 0 1px rgba(124, 58, 237, 0.08), 0 24px 80px rgba(124, 58, 237, 0.16)',
+
+        soft: '0 10px 35px rgba(0,0,0,.45)',
+
+        glow:
+          '0 0 0 1px rgba(198,40,40,.18), 0 15px 45px rgba(198,40,40,.20)',
+
+        card:
+          '0 12px 30px rgba(0,0,0,.50)',
+
+        red:
+          '0 0 25px rgba(198,40,40,.30)',
+
       },
+
+      borderRadius: {
+
+        xl: '16px',
+
+        '2xl': '20px',
+
+        '3xl': '28px',
+
+      },
+
+      backgroundImage: {
+
+        carbon:
+          'linear-gradient(135deg, rgba(255,255,255,.02) 25%, transparent 25%, transparent 50%, rgba(255,255,255,.02) 50%, rgba(255,255,255,.02) 75%, transparent 75%, transparent)',
+
+        hangar:
+          'linear-gradient(180deg,#111 0%,#0b0b0b 100%)',
+
+      },
+
+      transitionTimingFunction: {
+
+        military: 'cubic-bezier(0.2,0.8,0.2,1)',
+
+      },
+
     },
   },
+
   plugins: [],
 };
 

@@ -1,8 +1,20 @@
 :root {
   color-scheme: dark;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background-color: #080b14;
-  color: #e2e8f0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Colores principales */
+  --background: #0e0e0e;
+  --surface: #171717;
+  --surface-light: #1f1f1f;
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #ffffff;
+  --text-secondary: #c4c4c4;
+  --red: #c62828;
+  --red-hover: #e53935;
+
+  background: var(--background);
+  color: var(--text);
 }
 
 @tailwind base;
@@ -10,24 +22,104 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     min-height: 100vh;
-    background: radial-gradient(circle at top, rgba(124, 58, 237, 0.18), transparent 24%),
-      radial-gradient(circle at 70% 10%, rgba(59, 130, 246, 0.14), transparent 20%),
-      #080b14;
+    color: var(--text);
+
+    /* Fondo negro con efecto fibra de carbono */
+    background:
+      linear-gradient(
+        135deg,
+        rgba(255,255,255,0.015) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,0.015) 50%,
+        rgba(255,255,255,0.015) 75%,
+        transparent 75%,
+        transparent
+      ),
+      linear-gradient(
+        45deg,
+        rgba(255,255,255,0.01) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,0.01) 50%,
+        rgba(255,255,255,0.01) 75%,
+        transparent 75%,
+        transparent
+      ),
+      radial-gradient(circle at top, rgba(198,40,40,.18), transparent 45%),
+      #0e0e0e;
+
+    background-size: 12px 12px, 12px 12px, auto, auto;
   }
 
-  * {
-    box-sizing: border-box;
+  ::selection {
+    background: rgba(198, 40, 40, .35);
+    color: white;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #111;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #3b3b3b;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c62828;
   }
 }
 
 @layer utilities {
+
   .glass-card {
-    @apply bg-white/5 border border-white/10 backdrop-blur-xl shadow-soft;
+    @apply rounded-3xl border backdrop-blur-xl;
+
+    background: rgba(25,25,25,.82);
+    border-color: rgba(255,255,255,.08);
+
+    box-shadow:
+      0 8px 30px rgba(0,0,0,.45),
+      inset 0 1px 0 rgba(255,255,255,.03);
+
+    transition:
+      transform .25s ease,
+      border-color .25s ease,
+      box-shadow .25s ease;
+  }
+
+  .glass-card:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(198,40,40,.45);
+
+    box-shadow:
+      0 14px 35px rgba(0,0,0,.55),
+      0 0 20px rgba(198,40,40,.18);
+  }
+
+  .red-button {
+    background: #c62828;
+    color: white;
+    transition: .25s;
+  }
+
+  .red-button:hover {
+    background: #e53935;
   }
 }

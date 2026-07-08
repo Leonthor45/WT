@@ -6,7 +6,7 @@ lib\services\twitch.ts
 lib\services\updater\twitch-updater.ts
 lib\services\updater\youtube-updater.ts
 lib\services\vtuber.ts
-lib\services\vtubers.ts
+lib\services\streamers.ts
 lib\services\youtube.ts
 node_modules\@nodelib\fs.scandir\out\index.d.ts
 node_modules\@nodelib\fs.stat\out\index.d.ts

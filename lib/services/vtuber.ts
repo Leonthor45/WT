@@ -1,5 +1,5 @@
 import { getSupabase } from '../supabase';
-import type { Vtuber } from '../../types/vtuber';
+import type { Vtuber } from '../types/vtuber';
 
 type SupabaseSingleResult<T> = {
   data: T | null;
@@ -11,9 +11,9 @@ export async function getVtuberBySlug(
 ): Promise<Vtuber | null> {
   const supabase = getSupabase();
 
-  const vtubersQuery = supabase.from('vtubers') as any;
+  const streamersQuery = supabase.from('streamers') as any;
 
-  const res = (await vtubersQuery
+  const res = (await streamersQuery
     .select('*')
     .eq('slug', slug)
     .single()) as SupabaseSingleResult<Vtuber>;

@@ -9,7 +9,7 @@ type SupabaseListResult<T> = {
 };
 
 type YoutubeUpdatePayload =
-  Database['public']['Tables']['vtubers']['Update'];
+  Database['public']['Tables']['streamers']['Update'];
 
 export async function updateYoutube() {
   console.log('\n========== YOUTUBE ==========\n');
@@ -19,7 +19,7 @@ export async function updateYoutube() {
   const limite = new Date(Date.now() - 30 * 60 * 1000).toISOString();
 
   const res = (await supabaseAdmin
-    .from('vtubers')
+    .from('streamers')
     .select('*')
     .or(`youtube_updated_at.is.null,youtube_updated_at.lt.${limite}`)) as unknown as SupabaseListResult<Vtuber>;
 
@@ -27,14 +27,14 @@ export async function updateYoutube() {
     throw res.error;
   }
 
-  const vtubers = res.data ?? [];
+  const streamers = res.data ?? [];
 
-  if (!vtubers.length) {
-    console.log('No hay VTubers para actualizar.');
+  if (!streamers.length) {
+    console.log('No hay streamers para actualizar.');
     return;
   }
 
-  const ids = vtubers
+  const ids = streamers
     .filter((v) => v.youtube_channel_id)
     .map((v) => v.youtube_channel_id);
 
@@ -42,7 +42,7 @@ export async function updateYoutube() {
 
   const channels = await getYoutubeChannels(ids);
 
-  const updates = vtubers.map(async (vtuber) => {
+  const updates = streamers.map(async (vtuber) => {
     if (!vtuber.youtube_channel_id) return;
 
     const youtube = channels.get(vtuber.youtube_channel_id);
@@ -59,7 +59,7 @@ export async function updateYoutube() {
     };
 
     const { error: updateError } = await (supabaseAdmin
-      .from('vtubers') as any)
+      .from('streamers') as any)
       .update(payload)
       .eq('id', vtuber.id);
 

@@ -4,7 +4,7 @@ import type { Vtuber } from '../lib/types/vtuber';
 type StatusFilter = 'all' | 'live' | 'offline' | 'featured';
 type SortOption = 'featured' | 'twitch' | 'youtube' | 'name';
 
-export function useVtuberSearch(vtubers: Vtuber[]) {
+export function useVtuberSearch(streamers: Vtuber[]) {
   const [query, setQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [sortBy, setSortBy] = useState<SortOption>('featured');
@@ -12,7 +12,7 @@ export function useVtuberSearch(vtubers: Vtuber[]) {
   const filteredVtubers = useMemo(() => {
     const normalized = query.trim().toLowerCase();
 
-    const base = vtubers.filter((vtuber) => {
+    const base = streamers.filter((vtuber) => {
       const haystack = [
         vtuber.name,
         vtuber.slug,
@@ -53,7 +53,7 @@ export function useVtuberSearch(vtubers: Vtuber[]) {
 
       return Number(b.featured) - Number(a.featured) || a.name.localeCompare(b.name);
     });
-  }, [query, statusFilter, sortBy, vtubers]);
+  }, [query, statusFilter, sortBy, streamers]);
 
   return {
     query,

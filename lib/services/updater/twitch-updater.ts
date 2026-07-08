@@ -9,7 +9,7 @@ type SupabaseListResult<T> = {
 };
 
 type TwitchUpdatePayload =
-  Database['public']['Tables']['vtubers']['Update'];
+  Database['public']['Tables']['streamers']['Update'];
 
 export async function updateTwitch() {
   console.log('\n========== TWITCH ==========\n');
@@ -19,7 +19,7 @@ export async function updateTwitch() {
   const limite = new Date(Date.now() - 5 * 60 * 1000).toISOString();
 
   const res = (await supabaseAdmin
-    .from('vtubers')
+    .from('streamers')
     .select('*')
     .or(`twitch_updated_at.is.null,twitch_updated_at.lt.${limite}`)) as unknown as SupabaseListResult<Vtuber>;
 
@@ -27,14 +27,14 @@ export async function updateTwitch() {
     throw res.error;
   }
 
-  const vtubers = res.data ?? [];
+  const streamers = res.data ?? [];
 
-  if (!vtubers.length) {
-    console.log('No hay VTubers para actualizar.');
+  if (!streamers.length) {
+    console.log('No hay streamers para actualizar.');
     return;
   }
 
-  const usernames = vtubers
+  const usernames = streamers
     .filter((v) => v.twitch_username)
     .map((v) => v.twitch_username);
 
@@ -42,7 +42,7 @@ export async function updateTwitch() {
 
   const channels = await getTwitchChannels(usernames);
 
-  const updates = vtubers.map(async (vtuber) => {
+  const updates = streamers.map(async (vtuber) => {
     if (!vtuber.twitch_username) return;
 
     const twitch = channels.get(vtuber.twitch_username.toLowerCase());
@@ -63,7 +63,7 @@ export async function updateTwitch() {
     };
 
     const { error: updateError } = await (supabaseAdmin
-      .from('vtubers') as any)
+      .from('streamers') as any)
       .update(payload)
       .eq('id', vtuber.id);
 

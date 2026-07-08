@@ -1,4 +1,4 @@
-name: Actualizar VTubers
+name: Actualizar streamers
 
 on:
   schedule:

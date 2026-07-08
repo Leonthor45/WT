@@ -4,7 +4,7 @@ export type Json = string | number | boolean | null | { [key: string]: Json } | 
 export interface Database {
   public: {
     Tables: {
-      vtubers: {
+      streamers: {
         Row: {
           id: string;
           name: string;

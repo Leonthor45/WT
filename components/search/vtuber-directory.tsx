@@ -7,14 +7,14 @@ import { VtuberCard } from '../cards/vtuber-card';
 import { useVtuberSearch } from '../../hooks/useVtuberSearch';
 
 interface VtuberDirectoryProps {
-  vtubers: Vtuber[];
+  streamers: Vtuber[];
 }
 
 const statusOptions = [
   { value: 'all', label: 'Todos' },
-  { value: 'live', label: 'Live' },
-  { value: 'offline', label: 'Offline' },
-  { value: 'featured', label: 'Featured' },
+  { value: 'live', label: 'En directo' },
+  { value: 'offline', label: 'Desconectados' },
+  { value: 'featured', label: 'Destacados' },
 ] as const;
 
 const sortOptions = [
@@ -24,16 +24,16 @@ const sortOptions = [
   { value: 'name', label: 'Nombre' },
 ] as const;
 
-export function VtuberDirectory({ vtubers }: VtuberDirectoryProps) {
-  const {
-    query,
-    setQuery,
-    statusFilter,
-    setStatusFilter,
-    sortBy,
-    setSortBy,
-    filteredVtubers,
-  } = useVtuberSearch(vtubers);
+export function VtuberDirectory({ streamers }: VtuberDirectoryProps) {
+ const {
+  query,
+  setQuery,
+  statusFilter,
+  setStatusFilter,
+  sortBy,
+  setSortBy,
+  filteredVtubers,
+} = useVtuberSearch(streamers);
 
   function handleStatusChange(value: string) {
     setStatusFilter(value as typeof statusFilter);
@@ -44,57 +44,104 @@ export function VtuberDirectory({ vtubers }: VtuberDirectoryProps) {
   }
 
   return (
-    <section>
-      <div className="mb-8 space-y-3">
-        <SearchBar value={query} onChange={setQuery} />
+    <section className="mt-12">
 
-        <div className="rounded-[28px] border border-white/10 bg-slate-950/60 p-3 shadow-soft backdrop-blur-xl">
-          <div className="flex flex-wrap gap-2">
+      <div className="mb-8 rounded-[30px] border border-red-900/30 bg-black/50 p-6 backdrop-blur-xl">
+
+        <div className="mb-6">
+
+          <h2 className="text-3xl font-black text-white">
+            Directorio de Streamers
+          </h2>
+
+          <p className="mt-2 text-slate-400">
+            Descubre los creadores de contenido de War Thunder en español.
+          </p>
+
+        </div>
+
+        <SearchBar
+          value={query}
+          onChange={setQuery}
+        />
+
+        <div className="mt-6 rounded-2xl border border-white/10 bg-neutral-950/70 p-4">
+
+          <div className="flex flex-wrap gap-3">
+
             {statusOptions.map((option) => {
+
               const isActive = statusFilter === option.value;
 
               return (
+
                 <button
                   key={option.value}
                   type="button"
                   onClick={() => handleStatusChange(option.value)}
-                  className={`rounded-full px-3 py-2 text-sm transition ${
+                  className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-300 ${
                     isActive
-                      ? 'bg-violet-500/20 text-violet-200'
-                      : 'bg-slate-900/70 text-slate-300 hover:bg-slate-800'
+                      ? 'bg-red-700 text-white shadow-lg'
+                      : 'border border-white/10 bg-neutral-900 text-slate-300 hover:border-red-700 hover:text-white'
                   }`}
                 >
                   {option.label}
                 </button>
+
               );
+
             })}
+
           </div>
 
-          <div className="mt-3 flex flex-wrap items-center gap-3">
-            <label htmlFor="vtuber-sort" className="text-sm text-slate-400">
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+
+            <label
+              htmlFor="vtuber-sort"
+              className="text-sm font-medium uppercase tracking-wider text-slate-400"
+            >
               Ordenar por
             </label>
+
             <select
               id="vtuber-sort"
               value={sortBy}
               onChange={handleSortChange}
-              className="rounded-full border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-slate-200 outline-none"
+              className="rounded-xl border border-white/10 bg-black px-4 py-2 text-sm text-white outline-none transition focus:border-red-600"
             >
+
               {sortOptions.map((option) => (
-                <option key={option.value} value={option.value}>
+
+                <option
+                  key={option.value}
+                  value={option.value}
+                >
                   {option.label}
                 </option>
+
               ))}
+
             </select>
+
           </div>
+
         </div>
+
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-3 lg:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-3">
+
         {filteredVtubers.map((vtuber) => (
-          <VtuberCard key={vtuber.id} vtuber={vtuber} />
+
+          <VtuberCard
+            key={vtuber.id}
+            vtuber={vtuber}
+          />
+
         ))}
+
       </div>
+
     </section>
   );
 }

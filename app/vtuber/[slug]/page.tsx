@@ -23,7 +23,7 @@ export async function generateMetadata({
   if (!vtuber) {
     return {
       title: 'VTCol Hub',
-      description: 'Directorio de VTubers colombianos.',
+      description: 'Directorio de streamers colombianos.',
     };
   }
 

@@ -7,7 +7,7 @@ lib\services\twitch.ts
 lib\services\updater\twitch-updater.ts
 lib\services\updater\youtube-updater.ts
 lib\services\vtuber.ts
-lib\services\vtubers.ts
+lib\services\streamers.ts
 lib\services\youtube.ts
 node_modules\@rushstack\eslint-patch\lib-dts\eslint-bulk-suppressions\bulk-suppressions-patch.d.ts
 node_modules\@supabase\auth-js\dist\main\GoTrueAdminApi.d.ts
@@ -258,5 +258,5 @@ node_modules\undici-types\diagnostics-channel.d.ts
 node_modules\undici-types\dispatcher.d.ts
 node_modules\undici-types\fetch.d.ts
 node_modules\undici-types\mock-interceptor.d.ts
-scripts\import-vtubers.ts
-scripts\update-vtubers.ts
+scripts\import-streamers.ts
+scripts\update-streamers.ts
