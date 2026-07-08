@@ -136,6 +136,7 @@ export function VtuberCard({ vtuber }: VtuberCardProps) {
         alt={`${vtuber.name} banner`}
         width={1200}
         height={320}
+        unoptimized
         className="h-44 w-full object-cover"
       />
 
@@ -146,6 +147,7 @@ export function VtuberCard({ vtuber }: VtuberCardProps) {
           alt={`${vtuber.name} avatar`}
           width={88}
           height={88}
+          unoptimized
           className="rounded-2xl border border-white/20 object-cover transition duration-300 group-hover:scale-105 group-hover:border-red-600"
         />
 
