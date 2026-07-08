@@ -3,7 +3,7 @@ import { updateTwitch } from '../../../../lib/services/updater/twitch-updater';
 import { updateYoutube } from '../../../../lib/services/updater/youtube-updater';
 
 export async function GET(request: Request) {
-  const authHeader = process.env.CRON_SECRET_GITHUB;
+  const authHeader = process.env.WT_CRON_SECRET_GITHUB;
   const requestHeader = request.headers.get('authorization');
 
   if (authHeader && requestHeader !== `Bearer ${authHeader}`) {
